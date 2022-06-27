@@ -1,0 +1,49 @@
+using OpenQA.Selenium;
+using SpecflowApiWeb.Helpers;
+using SpecflowApiWeb.Pages;
+
+namespace SpecflowApiWeb.StepDefinitions
+{
+    [Binding]
+    public class InterfaceStepDefinitions : SeleniumHelpers
+    {
+        WebDriver driver;
+        HomePageElements homePageElements = new HomePageElements();
+        //private readonly ScenarioContext scenarioContext;
+        //IWebDriver driver;
+
+        public InterfaceStepDefinitions(WebDriver driver)
+        {
+            this.driver = driver;
+        }
+        //public InterfaceStepDefinitions(ScenarioContext scenarioContext)
+        //{
+        //    scenarioContext = scenarioContext;
+        //}
+
+        [Given(@"eu esteja no site ""([^""]*)""")]
+        public void GivenEuEstejaNoSite(string site)
+        {            
+            seleniumHelpers.AcessarSite(site);
+        }
+
+        [When(@"eu pesquisar por um modelo ""([^""]*)""")]
+        public void WhenEuPesquisarPorUmModelo(string modeloCarro)
+        {
+            //seleniumHelpers.EsperarElementoFicarDisponivelParaEscreverPeloId(homePageElements.barraBuscarId, modeloCarro);
+            //seleniumHelpers.EsperarElementoFicarClicavelPeloXpath(homePageElements.resoltadoModelosXpath);
+        }
+
+        [When(@"selecionar algum modelo disponivel")]
+        public void WhenSelecionarAlgumModeloDisponivel()
+        {
+            
+        }
+
+        [Then(@"o sistema apresenta as informacoes do modelo selecionado")]
+        public void ThenOSistemaApresentaAsInformacoesDoModeloSelecionado()
+        {
+            
+        }
+    }
+}
