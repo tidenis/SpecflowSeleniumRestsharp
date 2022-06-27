@@ -1,0 +1,59 @@
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
+using SpecflowApiWeb.Drivers;
+
+namespace SpecflowApiWeb.Helpers
+{
+    public class SeleniumHelpers 
+    {
+        IWebDriver driver;
+        private readonly ScenarioContext scenarioConText;
+
+        public void AcessarSite(string site)
+        {
+            driver = scenarioConText.Get<SeleniumDriver>("SeleniumDriver").ConfigurarDriver();
+            driver.Url = site;
+        }
+
+        private void Click(By by)
+        {
+            driver.FindElement(by).Click();
+        }
+
+        private void Escrever(By by, string value)
+        {
+            driver.FindElement(by).Clear();
+            driver.FindElement(by).SendKeys(value);
+        }
+
+        public void EsperarElementoFicarClicavelPeloId(string id)
+        {
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.Id(id)));
+            Click(By.Id(id));
+        }
+
+        public void EsperarElementoFicarClicavelPeloXpath(string xpath)
+        {
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(xpath)));
+            Click(By.Id(xpath));
+        }
+
+        public void EsperarElementoFicarDisponivelParaEscreverPeloId(string id, string valor)
+        {
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.Id(id)));
+            Escrever(By.Id(id), valor);
+        }
+
+        public void ExecutarTeclaTabEnter(string id)
+        {
+            driver.FindElement(By.Id(id)).SendKeys(Keys.Tab + Keys.Enter);
+        }
+    }
+}
